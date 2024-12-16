@@ -1,7 +1,7 @@
 {
   "name": "fastify-orders",
   "version": "1.0.0",
-  "main": "src/server.ts",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn src/server.ts",
     "build": "tsc",
@@ -13,11 +13,11 @@
     "@fastify/cors": "^9.0",
     "@prisma/client": "^5.0.0",
     "fastify": "^4.0.0",
+    "prisma": "^5.0.0",
     "fastify-plugin": "^4.0.0"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "prisma": "^5.0.0",
+    "@types/node": "^18.19.68",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.0"
   }
