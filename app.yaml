@@ -1,0 +1,11 @@
+service: feedback-back # Nombre del servicio
+runtime: nodejs16 # Asegúrate de usar una versión compatible de Node.js
+instance_class: F1 # Instancia más económica
+entrypoint: node server.js # Archivo de entrada para tu aplicación
+
+env_variables:
+  # DATABASE_URL: "postgres://<usuario>:<contraseña>@<host>:<puerto>/<nombre_db>"
+  NODE_ENV: "production"
+
+automatic_scaling:
+  max_instances: 1 # Limitar las instancias para reducir costos

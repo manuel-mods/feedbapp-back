@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Cambia esto según tu base de datos
+  url      = env("DATABASE_URL")
+}
+
+model Feedback {
+  id        String   @id @default(uuid())
+  content   String
+  rating    Int
+  createdAt DateTime @default(now())
+  userId    String
+  // user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  givenBy   String   // Email del usuario que da el feedback
+
+}
+
+
+model User {
+  id        String     @id @default(uuid())
+  email     String     @unique
+  name      String
+  description String?
+  // feedbacks Feedback[]
+}
+
