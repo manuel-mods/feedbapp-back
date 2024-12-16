@@ -35,6 +35,24 @@ export default async function (
     }
   });
 
+  fastify.get("/user/:email", async (request, reply) => {
+    try {
+      const { email } = request.params as { email: string };
+      const user = await prisma.user.findUnique({
+        where: { email },
+      });
+
+      if (!user) {
+        return reply.status(404).send({ error: "User not found" });
+      }
+
+      return reply.status(200).send(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      reply.status(500).send({ error: "Error fetching user" });
+    }
+  });
+
   fastify.get("/:userId", async (request, reply) => {
     try {
       const { userId } = request.params as { userId: string };
@@ -44,9 +62,7 @@ export default async function (
       });
 
       if (!feedbacks.length) {
-        return reply
-          .status(404)
-          .send({ error: "No feedback found for this user" });
+        return reply.status(200).send([]);
       }
 
       return reply.status(200).send(feedbacks);
